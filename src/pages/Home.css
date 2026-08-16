@@ -1,0 +1,107 @@
+.home-container {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #333;
+}
+
+/* About Section */
+.about {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin: 30px auto;
+  max-width: 900px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.about h2 {
+  font-size: 1.6rem;
+  color: #002147;
+}
+
+.about p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.owner-info h3 {
+  font-size: 1.1rem;
+  margin-top: 6px;
+  color: #002147;
+}
+
+.icon {
+  font-size: 2rem;
+  color: #002147;
+  margin-bottom: 6px;
+}
+
+/* Mission & Vision Section */
+.mission {
+  margin: 40px auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.mission h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #002147;
+}
+
+.mission-cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 250px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #002147;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Footer Logo */
+.footer {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.brand-logo {
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.brand-logo img {
+  width: 35px; /* reduced size further */
+  height: auto;
+  opacity: 0.85;
+}
+
+.brand-text {
+  font-size: 0.7rem;
+  color: #555;
+  margin-top: 3px;
+  font-style: italic;
+}
