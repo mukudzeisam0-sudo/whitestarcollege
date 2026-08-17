@@ -1,0 +1,14 @@
+.footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: -1; /* keeps it behind content */
+}
+
+.footer-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* makes it circular */
+  opacity: 0.1;       /* watermark effect */
+}

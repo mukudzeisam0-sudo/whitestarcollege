@@ -1,19 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Navbar"; // ✅ inside src
-import Home from "./pages/Home"; // ✅ inside src/pages
+import Navbar from "./Navbar"; 
+import Home from "./pages/Home"; 
 import Apply from "./pages/Apply";
 import About from "./pages/About";
 import Gallery from "./pages/Gallery";
 import RequirementsForm from "./pages/RequirementsForm";
-import Logo from "./components/Logo"; // ✅ inside src/components
+import Logo from "./components/Logo"; 
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* ✅ Single Navbar at the top */}
+        {/* ✅ Navbar at the top */}
         <Navbar />
 
         {/* ✅ Page Routes */}
@@ -25,15 +26,11 @@ function App() {
           <Route path="/requirements" element={<RequirementsForm />} />
         </Routes>
 
-        {/* ✅ MSM Logo fixed at bottom of every page */}
-        <div className="logo-center">
-          <Logo />
-        </div>
+        {/* ✅ MSM Logo watermark at bottom */}
+        <Logo />
 
         {/* ✅ Footer */}
-        <footer className="footer">
-          <p>© 2026 White Star College. All rights reserved.</p>
-        </footer>
+        <Footer />
       </div>
     </Router>
   );

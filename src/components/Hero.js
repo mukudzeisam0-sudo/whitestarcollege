@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./HeroSection.css";
 
 function HeroSection() {
+  const navigate = useNavigate();
+
   return (
     <section className="hero">
       <video
@@ -25,8 +28,21 @@ function HeroSection() {
             Empowering students through excellence, innovation, and integrity.
           </p>
           <div className="hero-buttons">
-            <button className="btn-primary">Apply Now</button>
-            <button className="btn-secondary">Learn More</button>
+            {/* ✅ Apply button navigates to /apply */}
+            <button 
+              className="btn-primary" 
+              onClick={() => navigate("/apply")}
+            >
+              Apply Now
+            </button>
+
+            {/* ✅ Learn More button navigates to /about */}
+            <button 
+              className="btn-secondary" 
+              onClick={() => navigate("/about")}
+            >
+              Learn More
+            </button>
           </div>
         </div>
       </div>

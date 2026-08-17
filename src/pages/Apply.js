@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Logo from "../components/Logo";
 import "../App.css";
 import "./Apply.css";
@@ -19,10 +18,17 @@ function Apply() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/send-application", formData);
-      alert("Application sent successfully!");
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      alert(data.message);
     } catch (error) {
       alert("Failed to send application.");
+      console.error(error);
     }
   };
 
