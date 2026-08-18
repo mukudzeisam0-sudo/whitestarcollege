@@ -93,7 +93,7 @@ app.post("/apply", async (req, res) => {
     service: "gmail",
     auth: {
       user: "whitestarcollege123@gmail.com",
-      pass: "ucwupeqkpjsxtpnh" // Replace with Gmail App Password
+      pass: "ckhrshtonkryxfjm" // Replace with Gmail App Password
     },
   });
 
