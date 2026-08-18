@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
-const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
@@ -20,32 +19,6 @@ app.delete("/delete", (req, res) => {
   });
 });
 
-// Announcement schema
-const announcementSchema = new mongoose.Schema({
-  text: String,
-  date: { type: Date, default: Date.now }
-});
-const Announcement = mongoose.model("Announcement", announcementSchema);
-
-// Save announcement
-app.post("/announcement", async (req, res) => {
-  const { announcement } = req.body;
-  const newAnnouncement = new Announcement({ text: announcement });
-  await newAnnouncement.save();
-  res.send("Announcement saved");
-});
-
-// Fetch announcements
-app.get("/announcements", async (req, res) => {
-  const anns = await Announcement.find().sort({ date: -1 });
-  res.json(anns);
-});
-
-// MongoDB Atlas connection (use env variable)
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log("✅ Connected to MongoDB Atlas"))
-  .catch(err => console.error("❌ Connection error:", err));
-
 // Storage setup
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
@@ -61,25 +34,12 @@ app.post("/upload", upload.single("file"), (req, res) => {
 // Serve uploads folder
 app.use("/uploads", express.static("uploads"));
 
-// Application schema
-const applicationSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  program: String,
-  message: String,
-  confirmationCode: String,
-  date: { type: Date, default: Date.now }
-});
-const Application = mongoose.model("Application", applicationSchema);
-
-// Route to handle applications
+// Route to handle applications (no DB save)
 app.post("/apply", async (req, res) => {
   const { name, email, program, message } = req.body;
   const confirmationCode = Math.floor(100000 + Math.random() * 900000).toString();
 
-  // Save to database
-  const newApp = new Application({ name, email, program, message, confirmationCode });
-  await newApp.save();
+  console.log("Application received:", { name, email, program, message, confirmationCode });
 
   // Email setup with env variables
   const transporter = nodemailer.createTransport({
@@ -109,21 +69,10 @@ app.post("/apply", async (req, res) => {
     await transporter.sendMail(applicantMailOptions);
     res.send("Application submitted successfully! Confirmation code sent.");
   } catch (error) {
-    console.error(error);
+    console.error("Nodemailer error:", error);
     res.status(500).send("Error sending application.");
-  }
-});
-
-// Admin endpoint to fetch all applications
-app.get("/applications", async (req, res) => {
-  try {
-    const apps = await Application.find();
-    res.json(apps);
-  } catch (err) {
-    res.status(500).send("Error fetching applications");
   }
 });
 
 // Export for Vercel serverless
 module.exports = (req, res) => app(req, res);
-
